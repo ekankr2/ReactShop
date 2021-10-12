@@ -1,7 +1,13 @@
 import './App.css';
 import { Navbar, Container, Nav, NavDropdown,Jumbotron,Button } from 'react-bootstrap';
+import {useState} from "react";
+
+import data from './data'
 
 function App() {
+
+    let [shoes, shoes변경] = useState(data);
+
   return (
     <div className="App">
         <Navbar bg="light" expand="lg">
@@ -26,7 +32,8 @@ function App() {
 
         <Jumbotron className="background py-3">
             <h1 className="display-3">20% Season Off</h1>
-            <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
+            <p className="lead">This is a simple hero unit, a simple Jumbotron-style
+                component for calling extra attention to featured content or information.</p>
             <p className="lead">
                 <Button color="primary">Learn More</Button>
             </p>
@@ -36,18 +43,19 @@ function App() {
             <div className="row">
                 <div className="col-md-4">
                     <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>
-                    <h4>상품명</h4>
-                    <p>상품설명 & 가격</p>
+                    <h4>{shoes[0].title}</h4>
+                    <p>{shoes[0].content}</p>
+                    <p>{shoes[0].price}</p>
                 </div>
                 <div className="col-md-4">
                     <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%"/>
-                    <h4>상품명</h4>
-                    <p>상품설명 & 가격</p>
+                    <h4>{shoes[1].title}</h4>
+                    <p>{shoes[1].content}</p>
                 </div>
                 <div className="col-md-4">
                     <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%"/>
-                    <h4>상품명</h4>
-                    <p>상품설명 & 가격</p>
+                    <h4>{shoes[2].title}</h4>
+                    <p>{shoes[2].content}</p>
                 </div>
 
             </div>
