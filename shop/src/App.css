@@ -23,6 +23,11 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.background{
+  background-image: url("./background.jpg");
+  background-size: cover;
+  color: white;
+}
 
 .App-link {
   color: #61dafb;
