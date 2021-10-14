@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import './App.css';
 import { Navbar, Container, Nav, NavDropdown,Jumbotron,Button } from 'react-bootstrap';
 import {useState} from "react";
@@ -44,7 +46,7 @@ function App() {
                 {
                     shoes.map(function (a, i){
                         return (
-                            <Item shoes={shoes} i={i}></Item>
+                            <Card shoes={a} i={i}></Card>
                         )
                     })
                 }
@@ -55,13 +57,12 @@ function App() {
   );
 }
 
-function Item(props){
+function Card(props){
     return(
         <div className="col-md-4">
-            <img src={props.shoes[props.i].src} width="100%"/>
-            <h4>{props.shoes[props.i].title}</h4>
-            <p>{props.shoes[props.i].content}</p>
-            <p>{props.shoes[props.i].price}</p>
+            <img src={ 'https://codingapple1.github.io/shop/shoes' + (props.i+1) +'.jpg' } width="100%"/>
+            <h4>{props.shoes.title}</h4>
+            <p>{props.shoes.content} & {props.shoes.price}</p>
         </div>
     )
 }
