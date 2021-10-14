@@ -41,25 +41,13 @@ function App() {
 
         <div className="container">
             <div className="row">
-                <Item shoes={shoes}></Item>
-
-                {/*<div className="col-md-4">*/}
-                {/*    <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>*/}
-                {/*    <h4>{shoes[0].title}</h4>*/}
-                {/*    <p>{shoes[0].content}</p>*/}
-                {/*    <p>{shoes[0].price}</p>*/}
-                {/*</div>*/}
-                {/*<div className="col-md-4">*/}
-                {/*    <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%"/>*/}
-                {/*    <h4>{shoes[1].title}</h4>*/}
-                {/*    <p>{shoes[1].content}</p>*/}
-                {/*</div>*/}
-                {/*<div className="col-md-4">*/}
-                {/*    <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%"/>*/}
-                {/*    <h4>{shoes[2].title}</h4>*/}
-                {/*    <p>{shoes[2].content}</p>*/}
-                {/*</div>*/}
-
+                {
+                    shoes.map(function (a, i){
+                        return (
+                            <Item shoes={shoes} i={i}></Item>
+                        )
+                    })
+                }
             </div>
         </div>
 
@@ -70,10 +58,10 @@ function App() {
 function Item(props){
     return(
         <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>
-            <h4>{props.shoes[0].title}</h4>
-            <p>{props.shoes[0].content}</p>
-            <p>{props.shoes[0].price}</p>
+            <img src={props.shoes[props.i].src} width="100%"/>
+            <h4>{props.shoes[props.i].title}</h4>
+            <p>{props.shoes[props.i].content}</p>
+            <p>{props.shoes[props.i].price}</p>
         </div>
     )
 }
