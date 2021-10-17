@@ -4,6 +4,7 @@ import './App.css';
 import { Navbar, Container, Nav, NavDropdown,Jumbotron,Button } from 'react-bootstrap';
 import {useState} from "react";
 import data from './data'
+import Detail from "./Detail";
 
 import { Link, Route, Switch } from 'react-router-dom'
 
@@ -19,8 +20,8 @@ function App() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
+                        <Nav.Link><Link to="/">Home</Link></Nav.Link>
+                        <Nav.Link><Link to='/detail'>Detail</Link></Nav.Link>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -33,7 +34,7 @@ function App() {
             </Container>
         </Navbar>
 
-
+        <Switch>
         <Route exact path="/">
             <Jumbotron className="background py-3">
                 <h1 className="display-3">20% Season Off</h1>
@@ -58,20 +59,14 @@ function App() {
 
         </Route>
         <Route path="/detail">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-6">
-                        <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-                    </div>
-                    <div className="col-md-6 mt-4">
-                        <h4 className="pt-5">상품명</h4>
-                        <p>상품설명</p>
-                        <p>120000원</p>
-                        <button className="btn btn-danger">주문하기</button>
-                    </div>
-                </div>
-            </div>
+            <Detail></Detail>
         </Route>
+
+        <Route path="/:id">
+            <div>아무거나 적었을때 이거 보여주셈</div>
+        </Route>
+
+        </Switch>
 
 
 
