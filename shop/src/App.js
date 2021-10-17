@@ -56,14 +56,15 @@ function App() {
                     }
                 </div>
             </div>
-
         </Route>
-        <Route path="/detail">
-            <Detail></Detail>
+
+
+        <Route path="/detail/:id">
+            <Detail shoes={shoes}></Detail>
         </Route>
 
         <Route path="/:id">
-            <div>아무거나 적었을때 이거 보여주셈</div>
+            <div>중복 출현</div>
         </Route>
 
         </Switch>
