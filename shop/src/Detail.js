@@ -24,6 +24,7 @@ function Detail(props) {
         return ()=>{ clearTimeout(타이머) }
     },[myAlert]);
 
+
     let { id } = useParams()
     let 찾은상품 = props.shoes.find(function (상품){
         return 상품.id == id

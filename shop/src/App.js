@@ -2,15 +2,18 @@
 
 import './App.css';
 import { Navbar, Container, Nav, NavDropdown,Jumbotron,Button } from 'react-bootstrap';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import data from './data'
 import Detail from "./Detail";
+import axios from "axios";
 
 import { Link, Route, Switch } from 'react-router-dom'
 
 function App() {
 
     let [shoes, shoes변경] = useState(data);
+    let [data2, data2변경] = useState(null);
+    let [showMore, changeShowMore] = useState(false);
 
   return (
     <div className="App">
@@ -54,7 +57,38 @@ function App() {
                             )
                         })
                     }
+                    {
+                        showMore === true
+                        ?(data2.map(function (a, i){
+                            return (
+                                <Card2 data2={a} i={i}></Card2>
+                            )
+                        })
+                            )
+                            :null
+                    }
                 </div>
+                {
+                    showMore === false
+                    ?<button className='btn btn-primary' onClick={()=>{
+
+                        axios.get('https://codingapple1.github.io/shop/data2.json')
+                            .then((result)=>{
+                                //console.log(result.data)
+                                let temp = result.data
+                                data2변경(temp)
+                                console.log(temp)
+                                changeShowMore(true)
+                            })
+                            .catch(()=>{
+                                console.log('실패했어요')
+                            })
+
+                    }}>더보기</button>
+                        :null
+
+                }
+
             </div>
         </Route>
 
@@ -82,6 +116,16 @@ function Card(props){
             <img src={ 'https://codingapple1.github.io/shop/shoes' + (props.i+1) +'.jpg' } width="100%"/>
             <h4>{props.shoes.title}</h4>
             <p>{props.shoes.content} & {props.shoes.price}</p>
+        </div>
+    )
+}
+
+function Card2(props){
+    return(
+        <div className="col-md-4">
+            <img src={ 'https://codingapple1.github.io/shop/shoes' + (props.i+1) +'.jpg' } width="100%"/>
+            <h4>{props.data2.title}</h4>
+            <p>{props.data2.content} & {props.data2.price}</p>
         </div>
     )
 }
