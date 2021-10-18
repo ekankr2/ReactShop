@@ -16,12 +16,13 @@ let 제목 = styled.h4`
 
 function Detail(props) {
     let[myAlert, myAlertChange] = useState(true);
-
+    let[inputData, inputData변경] = useState('');
 
     useEffect(()=>{
-        setTimeout(()=>{myAlertChange(false)}, 2000)
-
-    });
+        let 타이머 = setTimeout(()=>{myAlertChange(false)}, 2000)
+        console.log('hello')
+        return ()=>{ clearTimeout(타이머) }
+    },[myAlert]);
 
     let { id } = useParams()
     let 찾은상품 = props.shoes.find(function (상품){
@@ -34,6 +35,8 @@ function Detail(props) {
             <박스>
                 <제목 className="red">Detail</제목>
             </박스>
+            { inputData }
+            <input onChange={(e)=>{inputData변경(e.target.value)}}/>
             {
                 myAlert === true
                 ? <div className="my-alert2">
