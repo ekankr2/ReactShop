@@ -12,8 +12,7 @@ import { Link, Route, Switch } from 'react-router-dom'
 function App() {
 
     let [shoes, shoes변경] = useState(data);
-    let [data2, data2변경] = useState(null);
-    let [showMore, changeShowMore] = useState(false);
+    let [재고, 재고변경] = useState([10,11,12]);
 
   return (
     <div className="App">
@@ -57,20 +56,8 @@ function App() {
                             )
                         })
                     }
-                    {
-                        showMore === true
-                        ?(data2.map(function (a, i){
-                            return (
-                                <Card2 data2={a} i={i}></Card2>
-                            )
-                        })
-                            )
-                            :null
-                    }
                 </div>
-                {
-                    showMore === false
-                    ?<button className='btn btn-primary' onClick={()=>{
+                    <button className='btn btn-primary' onClick={()=>{
 
 
 
@@ -85,16 +72,12 @@ function App() {
                             })
 
                     }}>더보기</button>
-                        :null
-
-                }
-
-            </div>
+                </div>
         </Route>
 
 
         <Route path="/detail/:id">
-            <Detail shoes={shoes}></Detail>
+            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
         </Route>
 
         <Route path="/:id">
