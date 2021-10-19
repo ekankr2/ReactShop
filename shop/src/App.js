@@ -72,13 +72,13 @@ function App() {
                     showMore === false
                     ?<button className='btn btn-primary' onClick={()=>{
 
+
+
                         axios.get('https://codingapple1.github.io/shop/data2.json')
                             .then((result)=>{
-                                //console.log(result.data)
-                                let temp = result.data
-                                data2변경(temp)
-                                console.log(temp)
-                                changeShowMore(true)
+                                console.log(result.data)
+                                shoes변경( [...shoes, ...result.data] )
+
                             })
                             .catch(()=>{
                                 console.log('실패했어요')

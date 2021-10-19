@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useHistory, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import './Detail.scss'
+import axios from "axios";
 
 let 박스 = styled.div`
     padding : 20px;
@@ -19,6 +20,9 @@ function Detail(props) {
     let[inputData, inputData변경] = useState('');
 
     useEffect(()=>{
+
+        axios.get()
+
         let 타이머 = setTimeout(()=>{myAlertChange(false)}, 2000)
         console.log('hello')
         return ()=>{ clearTimeout(타이머) }
