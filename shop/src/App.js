@@ -1,13 +1,14 @@
 /* eslint-disable */
-
+import React from "react";
 import './App.css';
 import { Navbar, Container, Nav, NavDropdown,Jumbotron,Button } from 'react-bootstrap';
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import data from './data'
 import Detail from "./Detail";
 import axios from "axios";
-
 import { Link, Route, Switch } from 'react-router-dom'
+
+export let 재고context = React.createContext();
 
 function App() {
 
@@ -48,6 +49,9 @@ function App() {
             </Jumbotron>
 
             <div className="container">
+                
+                <재고context.Provider value={재고}>
+                
                 <div className="row">
                     {
                         shoes.map(function (a, i){
@@ -57,6 +61,9 @@ function App() {
                         })
                     }
                 </div>
+
+                </재고context.Provider>
+                    
                     <button className='btn btn-primary' onClick={()=>{
 
 
@@ -75,10 +82,14 @@ function App() {
                 </div>
         </Route>
 
-
         <Route path="/detail/:id">
+
+            <재고context.Provider value={재고}>
             <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
+            </재고context.Provider>
+
         </Route>
+
 
         <Route path="/:id">
             <div>중복 출현</div>
@@ -94,23 +105,24 @@ function App() {
 }
 
 function Card(props){
+    
+    let 재고 = useContext(재고context);
+    
     return(
         <div className="col-md-4">
             <img src={ 'https://codingapple1.github.io/shop/shoes' + (props.i+1) +'.jpg' } width="100%"/>
             <h4>{props.shoes.title}</h4>
             <p>{props.shoes.content} & {props.shoes.price}</p>
+            <Test></Test>
+            {재고}
+            
         </div>
     )
 }
 
-function Card2(props){
-    return(
-        <div className="col-md-4">
-            <img src={ 'https://codingapple1.github.io/shop/shoes' + (props.i+1) +'.jpg' } width="100%"/>
-            <h4>{props.data2.title}</h4>
-            <p>{props.data2.content} & {props.data2.price}</p>
-        </div>
-    )
+function Test(){
+    let 재고 = useContext(재고context)
+    return <p>{재고}</p>
 }
 
 export default App;

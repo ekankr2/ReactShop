@@ -1,8 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useHistory, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import './Detail.scss'
 import axios from "axios";
+import {재고context} from "./App";
+import {Nav} from "react-bootstrap";
+import { CSSTransition } from "react-transition-group";
 
 let 박스 = styled.div`
     padding : 20px;
@@ -18,6 +21,11 @@ let 제목 = styled.h4`
 function Detail(props) {
     let[myAlert, myAlertChange] = useState(true);
     let[inputData, inputData변경] = useState('');
+
+    let [누른탭, 누른탭변경] = useState(0)
+    let [스위치, 스위치변경] = useState(false)
+
+    let 재고 = useContext(재고context)
 
     useEffect(()=>{
 
@@ -62,8 +70,43 @@ function Detail(props) {
                     }}>뒤로가기</button>
                 </div>
             </div>
+
+            <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
+                <Nav.Item>
+                    <Nav.Link eventKey="link-0" onClick={()=>{ 스위치변경(false); 누른탭변경(0)
+                    }}>Active</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-1" onClick={()=>{ 스위치변경(false); 누른탭변경(1)
+                    }}>Option 2</Nav.Link>
+                </Nav.Item>
+            </Nav>
+
+            <CSSTransition in={스위치} classNames="wow" timeout={500}>
+                <TabContent 누른탭={누른탭} 스위치변경={스위치변경}></TabContent>
+            </CSSTransition>
+
+
+
         </div>
     )
+}
+
+function TabContent(props){
+
+    useEffect(()=>{
+        props.스위치변경(true)
+    })
+
+    if (props.누른탭 === 0) {
+        return <div>0번째 내용입니다</div>
+    } else if ( props.누른탭 === 1) {
+        return <div>1번째 내용입니다</div>
+    } else if ( props.누른탭 === 2) {
+        return <div>2번째 내용입니다</div>
+    }
+
+
 }
 
 function Info(props){
