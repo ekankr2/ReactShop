@@ -33,6 +33,14 @@ function Cart(props){
                     }
                     </tbody>
                 </Table>
+                {
+                    props.alert열렸니 === true
+                    ? (<div className="my-alert2">
+                        <p>지금 구매하시면 신규할인 20%</p>
+                        <button onClick={()=>{ props.dispatch({ type : '닫기' }) }}>닫기</button>
+                    </div>)
+                        : null
+                }
             </div>
         </div>
     )
@@ -40,8 +48,10 @@ function Cart(props){
 }
 
 function 함수명(state){
+    console.log(state)
     return {
-        state : state
+        state : state.reducer,
+        alert열렸니 : state.reducer2
     }
 }
 
