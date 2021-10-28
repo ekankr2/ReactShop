@@ -56,7 +56,7 @@ function Detail(props) {
             }
             <div className="row">
                 <div className="col-md-6">
-                    <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+                    <img src={`https://codingapple1.github.io/shop/shoes${찾은상품.id+1}.jpg`} width="100%" />
                 </div>
                 <div className="col-md-6 mt-4">
                     <h4 className="pt-5">{찾은상품.title}</h4>
@@ -67,7 +67,7 @@ function Detail(props) {
 
                     <button className="btn btn-danger" onClick={ ()=>{
                         props.재고변경([9,10,11])
-                        props.dispatch({type : '항목추가', payload : {id:2, name:'새로운상품', quan:1}})
+                        props.dispatch({type : '항목추가', payload : {id:찾은상품.id, name:찾은상품.title, quan:1}})
                         history.push('/cart')
 
                     } }>주문하기</button>
