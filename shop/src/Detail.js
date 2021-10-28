@@ -6,6 +6,7 @@ import axios from "axios";
 import {재고context} from "./App";
 import {Nav} from "react-bootstrap";
 import { CSSTransition } from "react-transition-group";
+import {connect} from "react-redux";
 
 let 박스 = styled.div`
     padding : 20px;
@@ -64,7 +65,12 @@ function Detail(props) {
 
                     <Info 재고={props.재고}></Info>
 
-                    <button className="btn btn-danger" onClick={ ()=>{ props.재고변경([9,10,11]) } }>주문하기</button>
+                    <button className="btn btn-danger" onClick={ ()=>{
+                        props.재고변경([9,10,11])
+                        props.dispatch({type : '항목추가', payload : {id:2, name:'새로운상품', quan:1}})
+                        history.push('/cart')
+
+                    } }>주문하기</button>
                     <button className="btn btn-danger" onClick={() => {
                         history.push('/');
                     }}>뒤로가기</button>
@@ -115,4 +121,12 @@ function Info(props){
     )
 }
 
-export default Detail
+function 함수명(state){
+    console.log(state)
+    return {
+        state : state.reducer,
+        alert열렸니 : state.reducer2
+    }
+}
+
+export default connect(함수명)(Detail)
