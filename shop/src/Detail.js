@@ -26,15 +26,30 @@ function Detail(props) {
     let [누른탭, 누른탭변경] = useState(0)
     let [스위치, 스위치변경] = useState(false)
 
+    let [recent, recentChange] = useState(JSON.parse(localStorage.getItem('recent')))
+
     let 재고 = useContext(재고context)
 
     useEffect(()=>{
 
         let 타이머 = setTimeout(()=>{myAlertChange(false)}, 2000)
-        console.log('hello')
+        //console.log('hi')
         return ()=>{ clearTimeout(타이머) }
     },[myAlert]);
 
+    useEffect(()=>{
+        if(recent === null){
+            let arr = [찾은상품]
+            localStorage.setItem('recent',JSON.stringify(arr))
+        } else {
+            console.log(recent)
+            let arr = [...recent]
+            arr.push(찾은상품)
+            console.log(arr)
+            localStorage.setItem('recent', JSON.stringify(arr))
+        }
+
+    },[])
 
     let { id } = useParams()
     let 찾은상품 = props.shoes.find(function (상품){
@@ -67,7 +82,7 @@ function Detail(props) {
 
                     <button className="btn btn-danger" onClick={ ()=>{
                         props.재고변경([9,10,11])
-                        props.dispatch({type : '항목추가', payload : {id:찾은상품.id, name:찾은상품.title, quan:1}})
+                        props.dispatch({type : '항목추가', 데이터 : {id:찾은상품.id, name:찾은상품.title, quan:1}})
                         history.push('/cart')
 
                     } }>주문하기</button>
@@ -85,6 +100,10 @@ function Detail(props) {
                 <Nav.Item>
                     <Nav.Link eventKey="link-1" onClick={()=>{ 스위치변경(false); 누른탭변경(1)
                     }}>Option 2</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-2" onClick={()=>{ 스위치변경(false); 누른탭변경(2)
+                    }}>최근 본 상품</Nav.Link>
                 </Nav.Item>
             </Nav>
 
@@ -127,6 +146,12 @@ function 함수명(state){
         state : state.reducer,
         alert열렸니 : state.reducer2
     }
+}
+
+function RecentItem(props){
+    return(
+        <p>재고 : {props.재고[0]}</p>
+    )
 }
 
 export default connect(함수명)(Detail)

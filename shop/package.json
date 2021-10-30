@@ -44,5 +44,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://ekankr2.github.io/"
+  "homepage": "https://ekankr2.github.io/",
+  "devDependencies": {
+    "prettier": "2.4.1"
+  }
 }
