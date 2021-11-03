@@ -26,8 +26,6 @@ function Detail(props) {
     let [누른탭, 누른탭변경] = useState(0)
     let [스위치, 스위치변경] = useState(false)
 
-    let [recent, recentChange] = useState(JSON.parse(localStorage.getItem('recent')))
-
     let 재고 = useContext(재고context)
 
     useEffect(()=>{
@@ -37,18 +35,16 @@ function Detail(props) {
         return ()=>{ clearTimeout(타이머) }
     },[myAlert]);
 
-    useEffect(()=>{
-        if(recent === null){
-            let arr = [찾은상품]
-            localStorage.setItem('recent',JSON.stringify(arr))
-        } else {
-            console.log(recent)
-            let arr = [...recent]
-            arr.push(찾은상품)
-            console.log(arr)
-            localStorage.setItem('recent', JSON.stringify(arr))
-        }
 
+    useEffect(()=>{
+        var arr = localStorage.getItem('watched')
+        if ( arr == null ) { arr = [] } else {arr = JSON.parse(arr)}
+
+        arr.push(id)
+        arr = new Set(arr)
+        arr = [...arr]
+
+        localStorage.setItem('watched', JSON.stringify(arr))
     },[])
 
     let { id } = useParams()
@@ -108,7 +104,7 @@ function Detail(props) {
             </Nav>
 
             <CSSTransition in={스위치} classNames="wow" timeout={500}>
-                <TabContent 누른탭={누른탭} 스위치변경={스위치변경}></TabContent>
+                <TabContent 누른탭={누른탭} 스위치변경={스위치변경} ></TabContent>
             </CSSTransition>
 
 
@@ -128,7 +124,8 @@ function TabContent(props){
     } else if ( props.누른탭 === 1) {
         return <div>1번째 내용입니다</div>
     } else if ( props.누른탭 === 2) {
-        return <div>2번째 내용입니다</div>
+        return <div>
+             }</div>
     }
 
 
