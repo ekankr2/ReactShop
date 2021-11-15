@@ -1,5 +1,6 @@
 import './App.css';
 import { Link, Route, Switch } from 'react-router-dom'
+import SignUp from "./SignUp";
 
 import firebase from "firebase/compat";
 import 'firebase/firestore'
@@ -8,18 +9,12 @@ import 'firebase/auth'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import {Container, Nav, Navbar} from "react-bootstrap";
+import {useState} from "react";
+import {auth, db} from "./index";
 
-firebase.initializeApp({
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.react_app_project_id,
-    storageBucket: process.env.react_app_storage_bucket,
-    messagingSenderId: process.env.react_app_messagin_id,
-    appId: process.env.REACT_APP_APP_ID
-})
 
-const auth = firebase.auth()
-const db = firebase.firestore()
+
+
 
 function App() {
 
@@ -31,10 +26,11 @@ function App() {
       <header>
           <Navbar bg="light" variant="light">
               <Container>
-                  <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                  <Navbar.Brand as={Link} to='/'>Carrot</Navbar.Brand>
                   <Nav className="me-auto">
                       <Nav.Link as={Link} to='/'>Home</Nav.Link>
-                      <Nav.Link as={Link} to='/detail'>Features</Nav.Link>
+                      <Nav.Link as={Link} to='/login'>Login</Nav.Link>
+                      <Nav.Link as={Link} to='/signUp'>Sign Up</Nav.Link>
                       <Nav.Link href="#pricing">Pricing</Nav.Link>
                   </Nav>
               </Container>
@@ -47,6 +43,11 @@ function App() {
             </Route>
             <Route path="/login">
                 {user ? <SignOut/> : <SignIn/>}
+            </Route>
+            <Route path="/signUp">
+                <Container>
+                    <SignUp db={db} auth={auth}/>
+                </Container>
             </Route>
         </Switch>
 
@@ -69,5 +70,6 @@ function SignOut(){
         <button onClick={()=> auth.signOut()}>Sign Out</button>
     )
 }
+
 
 export default App;
