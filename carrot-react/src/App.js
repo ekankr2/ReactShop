@@ -21,6 +21,9 @@ function App() {
   const [user] = useAuthState(auth)
     console.log(user)
 
+    console.log(auth)
+    console.log(db)
+
   return (
     <div className="App">
       <header>
@@ -46,7 +49,7 @@ function App() {
             </Route>
             <Route path="/signUp">
                 <Container>
-                    <SignUp db={db} auth={auth}/>
+                    <SignUp/>
                 </Container>
             </Route>
         </Switch>

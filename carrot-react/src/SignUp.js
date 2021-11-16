@@ -11,65 +11,47 @@ function SignUp(){
     const emailRef = useRef()
     const passwordRef = useRef()
 
-    const register = ()=>{
+    const register = (e)=>{
+        e.preventDefault()
+
         let name = nameRef.current.value
         let email = emailRef.current.value
         let password = passwordRef.current.value
 
-        let userData = {
-            name : 'hello',
-            email : 'joe',
-        }
-
-        db.collection('user').doc('hi').set(userData).then((res)=>{
-            console.log('res: ' + res)
-        }).catch((err)=>{
-            console.log(err)
-        })
-
         auth.createUserWithEmailAndPassword(email, password).then((res)=>{
-            console.log(res.user.uid)
 
-            let userData = {
-                name : 'hello',
-                email : 'joe',
+            let userInfo = {
+                name : name,
+                email : email
             }
 
-            db.collection('user').doc('hi').set(userData).then((res)=>{
-                console.log('res: ' + res)
+            db.collection('user').doc(res.user.uid).set(userInfo).then(()=>{
+                console.log('등록 성공')
+                nameRef.current.value = ''
+                emailRef.current.value = ''
+                passwordRef.current.value = ''
+
             }).catch((err)=>{
                 console.log(err)
             })
 
-
             console.log(res.user)
-            res.user.updateProfile( {displayName : name})
+            res.user.updateProfile( {displayName : name} )
         })
-    }
-
-    const sendMessage = async(e) =>{
-        e.preventDefault()
-
-
-        await db.collection('user').add({
-            text: 'hello',
-            name: 'john'
-        })
-
     }
 
     return (
         <div className="container mt-3">
-            <div className="mb-3">
-                <input type="text" className="form-control" placeholder="name" ref={nameRef}/>
-            </div>
-            <div className="mb-3">
-                <input type="email" className="form-control" placeholder="email" ref={emailRef}/>
-            </div>
-            <div className="mb-3">
-                <input type="password" className="form-control" placeholder="pw" ref={passwordRef}/>
-            </div>
-            <button type="submit" className="btn btn-primary" id="register" onClick={sendMessage}>가입하기</button>
+                <div className="mb-3">
+                    <input type="text" className="form-control" placeholder="이름" ref={nameRef}/>
+                </div>
+                <div className="mb-3">
+                    <input type="email" className="form-control" placeholder="이메일" ref={emailRef}/>
+                </div>
+                <div className="mb-3">
+                    <input type="password" className="form-control" placeholder="비밀번호" ref={passwordRef}/>
+                </div>
+                <button className="btn btn-primary" id="register" onClick={register}>가입하기</button>
         </div>
     )
 }
