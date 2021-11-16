@@ -1,11 +1,8 @@
 import {useRef, useState} from "react";
 import {auth, db} from "./index";
+import {Link} from "react-router-dom";
 
 function SignUp(){
-
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
 
     const nameRef = useRef()
     const emailRef = useRef()
@@ -52,6 +49,10 @@ function SignUp(){
                     <input type="password" className="form-control" placeholder="비밀번호" ref={passwordRef}/>
                 </div>
                 <button className="btn btn-primary" id="register" onClick={register}>가입하기</button>
+
+            <div>
+                <Link to='login'>이미 회원이신가요?</Link>
+            </div>
         </div>
     )
 }
