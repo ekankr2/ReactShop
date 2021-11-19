@@ -22,9 +22,6 @@ function App() {
   const [user] = useAuthState(auth)
     console.log(user)
 
-    console.log(auth)
-    console.log(db)
-
   return (
     <div className="App">
       <header>
@@ -35,7 +32,7 @@ function App() {
                       <Nav.Link as={Link} to='/'>Home</Nav.Link>
                       {user ? '' : <Nav.Link as={Link} to='/login'>Login</Nav.Link> }
                       {user ? '' : <Nav.Link as={Link} to='/signUp'>Sign Up</Nav.Link>}
-                      {user ? '' : <Nav.Link as={Link} to='/upload'>Upload</Nav.Link>}
+                      {user ? <Nav.Link as={Link} to='/upload'>Upload</Nav.Link> : ''}
                       {user ? <Nav.Link onClick={()=> auth.signOut()}>로그아웃</Nav.Link> : ''}
                   </Nav>
               </Container>
@@ -59,7 +56,7 @@ function App() {
             </Route>
 
             <Route path="/upload">
-                    <Upload/>
+                    <Upload user={user}/>
             </Route>
         </Switch>
 
