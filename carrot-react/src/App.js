@@ -1,6 +1,6 @@
 import './App.css';
 import { Link, Route, Switch, useHistory } from 'react-router-dom'
-import SignUp from "./SignUp";
+import SignUp from "./components/SignUp";
 
 import firebase from "firebase/compat";
 import 'firebase/firestore'
@@ -11,6 +11,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {useRef, useState} from "react";
 import {auth, db} from "./index";
+import Upload from "./components/Upload";
 
 
 
@@ -34,7 +35,7 @@ function App() {
                       <Nav.Link as={Link} to='/'>Home</Nav.Link>
                       {user ? '' : <Nav.Link as={Link} to='/login'>Login</Nav.Link> }
                       {user ? '' : <Nav.Link as={Link} to='/signUp'>Sign Up</Nav.Link>}
-                      <Nav.Link href="#pricing">Pricing</Nav.Link>
+                      {user ? '' : <Nav.Link as={Link} to='/upload'>Upload</Nav.Link>}
                       {user ? <Nav.Link onClick={()=> auth.signOut()}>로그아웃</Nav.Link> : ''}
                   </Nav>
               </Container>
@@ -57,6 +58,9 @@ function App() {
                 </Container>
             </Route>
 
+            <Route path="/upload">
+                    <Upload/>
+            </Route>
         </Switch>
 
 

@@ -1,5 +1,5 @@
-import {useRef, useState} from "react";
-import {auth, db} from "./index";
+import {useRef} from "react";
+import {auth, db} from "../index";
 import {Link} from "react-router-dom";
 
 function SignUp(){
