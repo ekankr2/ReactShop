@@ -13,6 +13,7 @@ import {useRef, useState} from "react";
 import {auth, db} from "./index";
 import Upload from "./components/Upload";
 import SignIn from "./components/SignIn";
+import {Divider} from "@mui/material";
 
 
 
@@ -26,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <header>
-          <Navbar bg="light" variant="light">
+          <Navbar bg="light"  variant="light">
               <Container>
                   <Navbar.Brand as={Link} to='/'>Carrot</Navbar.Brand>
                   <Nav className="me-auto">
@@ -43,7 +44,7 @@ function App() {
         <Switch>
 
             <Route exact path="/">
-                <div>메인페이지에요</div>
+                <Products/>
             </Route>
 
             <Route path="/login">
@@ -64,6 +65,54 @@ function App() {
 
     </div>
   );
+}
+function Products(){
+
+    const productRef = db.collection('product')
+    const query = productRef.orderBy('date')
+
+    const [products] = useCollectionData(query, {idField: 'id'})
+
+    return (
+        <>
+            <div>
+                {products && products.map(product => <ProductCard key={product.id} product={product}/>)}
+            </div>
+        </>
+    )
+}
+
+function ProductCard(props){
+    const { title, content, image, name, price, uid, id} = props.product
+    const timestamp = props.product.date.toDate()
+    const date = String(timestamp).slice(4,21)
+    let history = useHistory()
+
+    const thumbnail={
+        width: "100%",
+        maxWidth: "200px",
+        height: "200px",
+        borderRadius: "10px",
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+
+    }
+
+    return (
+        <>
+            <div className="col-md-4 product" onClick={()=>{ history.push('/detail/' + id) }}>
+                <div className='thumbnail' style={thumbnail}></div>
+                <div className="flex-grow-1 p-4">
+                    <h5 className="title">{title}</h5>
+                    <p className="date">{date}</p>
+                    <p className="price">{price}</p>
+                    <p className="float-end">🤍0</p>
+                </div>
+            </div>
+            <Divider variant="middle" />
+        </>
+    )
 }
 
 

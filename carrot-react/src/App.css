@@ -3,28 +3,20 @@ body{
   padding: 0;
   box-sizing: border-box;
 }
-.uploadCard{
-  margin: 20px 0 0 0;
-  font-family: 'Montserrat', sans-serif;
-}
-.uploadHeader{
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.1em;
-}
-.uploadHeader .close{
-  position: absolute;
-  left: 10px;
+.product{
   cursor: pointer;
+  display: flex;
+  padding: 10px;
 }
-.uploadHeader .complete{
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  color: #e78111;
+.product .price {
+  font-size: 16px;
   font-weight: 600;
-  font-size: 0.95em;
 }
-.uploadForm{
-  margin: 20px;
+.product .title {
+  font-size: 17px;
+  font-weight: 600;
+}
+.product .date {
+  color: grey;
+  font-size: 13px;
 }

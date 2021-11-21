@@ -1,0 +1,25 @@
+.uploadCard{
+    margin: 20px 0 0 0;
+    font-family: 'Montserrat', sans-serif;
+}
+.uploadHeader{
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+.uploadHeader .close{
+    position: absolute;
+    left: 10px;
+    cursor: pointer;
+}
+.uploadHeader .complete{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #e78111;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.uploadForm{
+    margin: 20px;
+}
