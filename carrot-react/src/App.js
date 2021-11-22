@@ -14,6 +14,8 @@ import {auth, db} from "./index";
 import Upload from "./components/Upload";
 import SignIn from "./components/SignIn";
 import {Divider} from "@mui/material";
+import {IoChatbubblesOutline, IoMdHeartEmpty} from "react-icons/all";
+import Detail from "./components/Detail";
 
 
 
@@ -22,7 +24,6 @@ import {Divider} from "@mui/material";
 function App() {
 
   const [user] = useAuthState(auth)
-    console.log(user)
 
   return (
     <div className="App">
@@ -60,6 +61,10 @@ function App() {
             <Route path="/upload">
                     <Upload user={user}/>
             </Route>
+
+            <Route path='/detail/:id'>
+                <Detail/>
+            </Route>
         </Switch>
 
 
@@ -90,8 +95,8 @@ function ProductCard(props){
 
     const thumbnail={
         width: "100%",
-        maxWidth: "200px",
-        height: "200px",
+        maxWidth: "180px",
+        height: "180px",
         borderRadius: "10px",
         backgroundImage: `url(${image})`,
         backgroundSize: "cover",
@@ -106,8 +111,9 @@ function ProductCard(props){
                 <div className="flex-grow-1 p-4">
                     <h5 className="title">{title}</h5>
                     <p className="date">{date}</p>
-                    <p className="price">{price}</p>
-                    <p className="float-end">🤍0</p>
+                    <p className="price">{price}원</p>
+                    <p className="float-end chat"><IoMdHeartEmpty/>0</p>
+                    <p className="float-end likes"><IoChatbubblesOutline/>0</p>
                 </div>
             </div>
             <Divider variant="middle" />

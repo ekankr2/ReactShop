@@ -2,6 +2,7 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 .product{
   cursor: pointer;
@@ -19,4 +20,16 @@ body{
 .product .date {
   color: grey;
   font-size: 13px;
+}
+.product .chat{
+  position: relative;
+  font-size: 20px;
+  color: #999;
+  top: 20px;
+}
+.product .likes{
+  position: relative;
+  font-size: 20px;
+  color: #999;
+  top: 20px;
 }
