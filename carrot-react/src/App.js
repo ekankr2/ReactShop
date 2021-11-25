@@ -16,6 +16,7 @@ import SignIn from "./components/SignIn";
 import {Divider} from "@mui/material";
 import {IoChatbubblesOutline, IoMdHeartEmpty} from "react-icons/all";
 import Detail from "./components/Detail";
+import Edit from "./components/Edit";
 
 
 
@@ -65,6 +66,10 @@ function App() {
 
             <Route path='/detail/:id'>
                 <Detail/>
+            </Route>
+
+            <Route path='/edit/:id'>
+                <Edit/>
             </Route>
         </Switch>
 

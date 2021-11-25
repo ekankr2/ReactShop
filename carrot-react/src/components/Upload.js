@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import {Button, Card, Container, Form} from "react-bootstrap";
 import {GrClose} from "react-icons/all";
-import './Upload.css';
+import './style/Upload.css';
 import {useHistory} from "react-router-dom";
 import {db, storage} from "../index";
 import firebase from "firebase/compat";
