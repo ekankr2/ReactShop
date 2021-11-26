@@ -3,6 +3,7 @@ import {useAuthState} from "react-firebase-hooks/auth";
 import {auth, db} from "../index";
 import {useDocumentData} from "react-firebase-hooks/firestore";
 import './style/Detail.css'
+import {BsArrowLeft} from "react-icons/all";
 
 function Detail(){
     let { id } = useParams()
@@ -35,7 +36,7 @@ function Detail(){
 
         return(
             <div className="container">
-                상세페이지임
+                <BsArrowLeft onClick={()=>{history.goBack()}} size="28" cursor="pointer"/>
                 <div>
                     <div className="detail-pic my-4" style={pic}/>
                     <h5 className="author">{product.name}</h5>
