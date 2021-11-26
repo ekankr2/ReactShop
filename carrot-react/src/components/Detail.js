@@ -11,7 +11,14 @@ function Detail(){
     const query = db.collection('product').doc(id)
     const [product] = useDocumentData(query, {idField:'id'})
 
-
+    const deleteDoc = () => {
+        db.collection('product').doc(id).delete().then(()=>{
+            alert('삭제성공')
+            history.push('/')
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
 
     if(product){
         let timestamp = product.date.toDate().toString()
@@ -39,6 +46,7 @@ function Detail(){
                         <p className="price">{product.price}원</p>
                 </div>
                 <button id="edit" onClick={()=>{history.push('/edit/' + id)}}>수정</button>
+                <button id="edit" onClick={deleteDoc}>삭제</button>
                 <button id="chat">채팅</button>
 
             </div>

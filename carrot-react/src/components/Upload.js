@@ -50,8 +50,11 @@ function Upload(props){
                 }
                 db.collection('product').add(itemInfo).then((result)=>{
                     console.log(result)
+                    alert('등록 성공')
+                    history.push('/')
                 }).catch((err)=>{
                     console.log(err)
+                    alert('등록 실패')
                 })
             })
             })
