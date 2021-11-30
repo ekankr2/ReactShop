@@ -1,7 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom'
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth, db} from "../index";
-import {useDocumentData} from "react-firebase-hooks/firestore";
+import {useCollectionData, useDocumentData} from "react-firebase-hooks/firestore";
 import './style/Detail.css'
 import {BsArrowLeft} from "react-icons/all";
 
@@ -22,7 +22,8 @@ function Detail(props){
         })
     }
 
-    const StartChat = () => {
+    const StartChat = (e) => {
+        e.preventDefault()
         if(!user) {
             alert('로그인 부탁드립니다.')
         }else{
@@ -31,9 +32,15 @@ function Detail(props){
                 product : id,
                 date : new Date()
             }
-            db.collection('chatroom').add(data).then((result)=>{
-                console.log(result)
-            })
+            // db.collection('chatroom').add(data).then((result)=>{
+            //     console.log(result)
+            // })
+            db.collection('chatroom').where('who', '==', data.who).get()
+                .then((result)=>{
+                    result.forEach((a)=>{
+                        console.log(a.data())
+                    })
+                })
         }
     }
 
@@ -51,7 +58,7 @@ function Detail(props){
         }
 
         return(
-            <div className="container">
+            <div className="detailContainer">
                 <BsArrowLeft onClick={()=>{history.goBack()}} size="28" cursor="pointer"/>
                 <div>
                     <div className="detail-pic my-4" style={pic}/>

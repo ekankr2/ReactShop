@@ -17,6 +17,7 @@ import {Divider} from "@mui/material";
 import {IoChatbubblesOutline, IoMdHeartEmpty} from "react-icons/all";
 import Detail from "./components/Detail";
 import Edit from "./components/Edit";
+import Chat from "./components/Chat";
 
 
 
@@ -71,6 +72,10 @@ function App() {
 
             <Route path='/edit/:id'>
                 <Edit/>
+            </Route>
+
+            <Route path='/chat'>
+                <Chat/>
             </Route>
         </Switch>
 
