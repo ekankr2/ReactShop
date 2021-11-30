@@ -5,20 +5,36 @@ import {useDocumentData} from "react-firebase-hooks/firestore";
 import './style/Detail.css'
 import {BsArrowLeft} from "react-icons/all";
 
-function Detail(){
+function Detail(props){
+    let user = props.user
     let { id } = useParams()
     let history = useHistory()
 
     const query = db.collection('product').doc(id)
     const [product] = useDocumentData(query, {idField:'id'})
 
-    const deleteDoc = () => {
+    const DeleteDoc = () => {
         db.collection('product').doc(id).delete().then(()=>{
             alert('삭제성공')
             history.push('/')
         }).catch((err)=>{
             console.log(err)
         })
+    }
+
+    const StartChat = () => {
+        if(!user) {
+            alert('로그인 부탁드립니다.')
+        }else{
+            let data = {
+                who : [user.uid, product.uid],
+                product : id,
+                date : new Date()
+            }
+            db.collection('chatroom').add(data).then((result)=>{
+                console.log(result)
+            })
+        }
     }
 
     if(product){
@@ -46,9 +62,15 @@ function Detail(){
                         <p className="content">{product.content}</p>
                         <p className="price">{product.price}원</p>
                 </div>
-                <button id="edit" onClick={()=>{history.push('/edit/' + id)}}>수정</button>
-                <button id="edit" onClick={deleteDoc}>삭제</button>
-                <button id="chat">채팅</button>
+                {
+                    user && user.uid === id &&
+                        <>
+                            <button className='edit' onClick={()=>{history.push('/edit/' + id)}}>수정</button>
+                            <button className='delete' onClick={DeleteDoc}>삭제</button>
+                        </>
+                }
+
+                <button className='chat' onClick={StartChat}>채팅</button>
 
             </div>
         )

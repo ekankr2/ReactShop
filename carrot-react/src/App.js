@@ -39,6 +39,7 @@ function App() {
                       {user ? '' : <Nav.Link as={Link} to='/signUp'>Sign Up</Nav.Link>}
                       {user ? <Nav.Link as={Link} to='/upload'>Upload</Nav.Link> : ''}
                       {user ? <Nav.Link onClick={()=> auth.signOut()}>로그아웃</Nav.Link> : ''}
+                      {user ? <Nav.Link>{user.displayName}</Nav.Link> : ''}
                   </Nav>
               </Container>
           </Navbar>
@@ -65,7 +66,7 @@ function App() {
             </Route>
 
             <Route path='/detail/:id'>
-                <Detail/>
+                <Detail user={user}/>
             </Route>
 
             <Route path='/edit/:id'>
