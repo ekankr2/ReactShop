@@ -35,14 +35,16 @@ function ProductCard(props){
         backgroundImage: `url(${image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        display: "inline-block",
+        verticalAlign: "top"
 
     }
 
     return (
-        <Container>
+        <>
             <div className="product" onClick={()=>{ history.push('/detail/' + id) }}>
                 <div className='thumbnail' style={thumbnail}></div>
-                <div>
+                <div className="product-content">
                     <h5 className="title">{title}</h5>
                     <p className="date">{date}</p>
                     <p className="price">{price}원</p>
@@ -50,7 +52,7 @@ function ProductCard(props){
                     <p className="float-end likes"><IoChatbubblesOutline/>0</p>
                 </div>
             </div>
-            <Divider variant="middle" />
-        </Container>
+            <Divider variant="middle" className="product-divider" />
+        </>
     )
 }
