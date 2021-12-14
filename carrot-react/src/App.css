@@ -1,14 +1,18 @@
 body {
   background-color: #282c34;
+  min-height: 92vh;
 }
 .App {
   max-width: 728px;
   min-width: 728px;
   margin: 0 auto;
+  min-height: 92vh;
 }
 .Container{
   background-color: white;
   position: relative;
+  min-height: 92vh;
+
 }
 .product{
   width: 97%;
@@ -48,8 +52,8 @@ body {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  position: absolute;
-  right: 50px;
+  position: fixed;
+  right: 150px;
   bottom: 100px;
   transition: all 0.25s;
   box-shadow: 5px 5px 12px lightgrey;
