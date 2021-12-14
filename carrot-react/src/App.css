@@ -94,3 +94,34 @@ body {
   background-color: coral;
   border: 1rem solid;
 }
+.footerContainer{
+  background-color: white;
+  height: 70px;
+  max-width: 728px;
+  min-width: 728px;
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+}
+
+.footerMenu{
+  height: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.nav-item{
+  height: 100%;
+}
+
+.footerMenu a{
+  height: 100%;
+  display: inline-block;
+  color: grey;
+  font-weight: bold;
+  font-size: 18px;
+  padding-top: 20px;
+}
+
+.footerMenu button{
+  color: red;
+}

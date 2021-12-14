@@ -21,6 +21,7 @@ import MyNavbar from "./components/main/AppBar";
 import {Container} from "react-bootstrap";
 import Products from "./components/main/Products";
 import MenuButton from "./components/MenuButton";
+import NavFooter from "./components/NavFooter";
 
 
 
@@ -68,6 +69,7 @@ function App() {
                     <Chat/>
                 </Route>
             </Switch>
+            <NavFooter/>
         </div>
 
 
