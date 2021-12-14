@@ -20,6 +20,7 @@ import Chat from "./components/Chat";
 import MyNavbar from "./components/main/AppBar";
 import {Container} from "react-bootstrap";
 import Products from "./components/main/Products";
+import MenuButton from "./components/MenuButton";
 
 
 
@@ -38,6 +39,7 @@ function App() {
 
                 <Route exact path="/">
                     <Products/>
+                    <MenuButton/>
                 </Route>
 
                 <Route path="/login">

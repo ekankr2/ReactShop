@@ -17,6 +17,7 @@ export default function Products(){
             <div>
                 {products && products.map(product => <ProductCard key={product.id} product={product}/>)}
             </div>
+
         </>
     )
 }

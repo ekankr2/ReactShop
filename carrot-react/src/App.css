@@ -3,10 +3,12 @@ body {
 }
 .App {
   max-width: 728px;
+  min-width: 728px;
   margin: 0 auto;
 }
 .Container{
   background-color: white;
+  position: relative;
 }
 .product{
   width: 97%;
@@ -37,5 +39,38 @@ body {
 
 }
 .product .likes{
+
+}
+
+.plusBtn{
+  background-color: coral;
+  border: none;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  position: absolute;
+  right: 50px;
+  bottom: 100px;
+  transition: all 0.25s;
+  box-shadow: 5px 5px 12px lightgrey;
+}
+
+.plusBtn span{
+  position: relative;
+  bottom: 11px;
+  font-size: 50px;
+  color: white;
+}
+
+.plusBtn:hover{
+  background-color: rgba(255, 127, 80, 0.66);
+}
+
+.plusBtn:focus{
+  background-color: white;
+}
+
+.plusBtn:focus span{
+  color: coral;
 
 }
