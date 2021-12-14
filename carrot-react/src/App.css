@@ -72,5 +72,25 @@ body {
 
 .plusBtn:focus span{
   color: coral;
+}
 
+.plusBtnModal{
+  top: 30%;
+}
+
+.modalBtn{
+  background-color: coral;
+  height: 100px;
+  border: 1rem solid;
+  font-size: 25px;
+}
+
+.modalBtn:hover{
+  background-color: rgba(255, 127, 80, 0.72);
+  border: 1rem solid rgba(206, 206, 206, 0.05);
+}
+
+.modalBtn:active{
+  background-color: coral;
+  border: 1rem solid;
 }
