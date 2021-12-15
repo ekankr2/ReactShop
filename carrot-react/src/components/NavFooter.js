@@ -20,7 +20,7 @@ export default function NavFooter(){
                     <Nav.Link eventKey="link-1" onClick={()=>history.push('/upload')}>등록</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="link-2" onClick={()=>history.push('/chat')}>채팅</Nav.Link>
+                    <Nav.Link eventKey="link-2" onClick={()=>history.push('/chat/')}>채팅</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link eventKey="link-3" onClick={()=>history.push('/chat')}>마이</Nav.Link>

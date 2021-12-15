@@ -22,6 +22,7 @@ import {Container} from "react-bootstrap";
 import Products from "./components/main/Products";
 import MenuButton from "./components/MenuButton";
 import NavFooter from "./components/NavFooter";
+import Chatroom from "./components/Chatroom";
 
 
 
@@ -34,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <MyNavbar/>
+      <MyNavbar user={user} />
         <div className="Container">
             <Switch>
 
@@ -66,7 +67,11 @@ function App() {
                 </Route>
 
                 <Route path='/chat'>
-                    <Chat/>
+                    <Chat user={user} />
+                </Route>
+
+                <Route path='/chatroom/:id'>
+                    <Chatroom/>
                 </Route>
             </Switch>
             <NavFooter/>

@@ -1,18 +1,23 @@
 body {
   background-color: #282c34;
-  min-height: 92vh;
 }
 .App {
   max-width: 728px;
   min-width: 728px;
   margin: 0 auto;
-  min-height: 92vh;
 }
 .Container{
   background-color: white;
   position: relative;
   min-height: 92vh;
 
+}
+.navTitle{
+  cursor: pointer;
+  font-size: 21px;
+}
+.userName{
+  font-size: 21px;
 }
 .product{
   width: 97%;
